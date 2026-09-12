@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System & GPU Telemetry Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-mono antialiased min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        <!-- Header -->
+        <header class="flex justify-between items-center border-b border-zinc-800 pb-4">
+            <div>
+                <h1 class="text-xl font-bold tracking-wider text-emerald-400">SYS-TELEMETRY // AGENT-01</h1>
+                <p class="text-xs text-zinc-500">Live Hardware Observability Pipeline</p>
+            </div>
+            <div id="connection-status" class="flex items-center space-x-2 text-xs">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" id="status-dot"></span>
+                <span id="status-text" class="text-zinc-400">Disconnected</span>
+            </div>
+        </header>
+
+        <!-- Metric Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg">
+                <span class="text-xs text-zinc-500 uppercase">CPU Usage</span>
+                <div class="text-2xl font-bold mt-1 text-emerald-400" id="card-cpu">--%</div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg">
+                <span class="text-xs text-zinc-500 uppercase">Memory Usage</span>
+                <div class="text-2xl font-bold mt-1 text-blue-400" id="card-ram">--%</div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg">
+                <span class="text-xs text-zinc-500 uppercase">GPU Utilization</span>
+                <div class="text-2xl font-bold mt-1 text-purple-400" id="card-gpu-util">--%</div>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg">
+                <span class="text-xs text-zinc-500 uppercase">GPU Temperature</span>
+                <div class="text-2xl font-bold mt-1 text-amber-400" id="card-gpu-temp">--°C</div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-lg shadow-xl">
+            <h2 class="text-sm font-semibold text-zinc-400 mb-4 uppercase tracking-wider">Resource Utilization Trend</h2>
+            <div class="h-80">
+                <canvas id="telemetryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
