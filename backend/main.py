@@ -69,7 +69,7 @@ def get_latest_metrics():
         
     return dict(row)
 
-@app.get("/")
-def root():
+@app.get("/health")
+def health_check():
     return {"status": "online", "message": "Telemetry API is running."}
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
